@@ -10,10 +10,10 @@ Usage
 
 ```javascript
     const sync = require('kitchen-sync');
-    function theFnIWantToUseInBothModes(anArg, another, callback){
-        let complete = sync(callback)
+    function theFnIWantToUseInBothModes(anArg, another, callbackFn){
+        let callback = sync(callbackFn)
         // do something asynchronous and return
-        return complete.return;
+        return callback.return;
     }
 ```
 If a callback is passed, it works that way, with no stack breakage... if not a promise is returned. Easy.
