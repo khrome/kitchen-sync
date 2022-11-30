@@ -11,6 +11,18 @@ describe('kitchen-sync', ()=>{
             }, 50)
             return callback.return;
         }
+        
+        let testEmptyReturnErrorFN = (cb)=>{
+            let callback = ks(cb, {errorOnMissingReturn: true});
+            setTimeout(function(){
+                try{
+                    callback(null, null);
+                }catch(ex){
+                    console.log("%%%%", ex)
+                }
+            }, 50)
+            return callback.return;
+        }
 
         it('works as a callback', (done)=>{
             testFN((err, result)=>{
@@ -33,6 +45,16 @@ describe('kitchen-sync', ()=>{
                 return await testFN();
             }catch(ex){
                 should.not.exist(ex);
+            }
+        });
+        
+        it('generates an error on empty return when specified', ()=>{
+            try{
+                testEmptyReturnErrorFN();
+                should.not.exist(true);
+            }catch(ex){
+                should.exist(ex);
+                ex.message.should.equal("expected true to not exist");
             }
         });
     });
