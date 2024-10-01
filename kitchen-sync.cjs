@@ -23,5 +23,5 @@ const ks = (cb, opts)=>{
     }
     return callback;
 }
-ks.default = ks;
-module.exports = ks;
+module.exports = { sync: ks };
+module.exports.default = ks;

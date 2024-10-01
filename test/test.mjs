@@ -1,5 +1,6 @@
-const should = require('chai').should();
-const ks = require('../kitchen-sync');
+import { chai } from '@environment-safe/chai';
+import { sync as ks } from '../kitchen-sync.mjs';
+const should = chai.should();
 
 describe('kitchen-sync', ()=>{
     describe('performs correctly using a simple timeout', ()=>{

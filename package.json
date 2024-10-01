@@ -1,9 +1,42 @@
 {
   "name": "kitchen-sync",
-  "version": "0.0.2",
-  "main": "kitchen-sync.js",
+  "version": "2.0.0",
+  "main": "kitchen-sync.mjs",
+  "type": "module",
+  "module": "kitchen-sync.mjs",
+  "exports": {
+      ".": {
+          "import": "./kitchen-sync.mjs",
+          "require": "./kitchen-sync.cjs"
+      },
+      "./src/kitchen-sync.mjs": {
+          "import": "./kitchen-sync.mjs",
+          "require": "./kitchen-sync.cjs"
+      },
+      "./dist/kitchen-sync.cjs": {
+          "import": "./kitchen-sync.mjs",
+          "require": "./kitchen-sync.cjs"
+      },
+      "./index.js": {
+          "import": "./kitchen-sync.mjs",
+          "require": "./kitchen-sync.cjs"
+      },
+      "./kitchen-sync.js": {
+          "import": "./kitchen-sync.mjs",
+          "require": "./kitchen-sync.cjs"
+      }
+  },
   "devDependencies": {
     "chai": "^4.3.6",
     "mocha": "^9.2.0"
+  },
+  "scripts": {
+      "lint": "./node_modules/.bin/eslint *.mjs src/*.mjs test/*.mjs",
+      "test": "npm run import-test; npm run require-test",
+      "import-test": "./node_modules/.bin/mocha test/test.mjs",
+      "require-test": "./node_modules/.bin/mocha test/test.cjs"
+  },
+  "dependencies": {
+    "@environment-safe/chai": "^0.2.0"
   }
 }
